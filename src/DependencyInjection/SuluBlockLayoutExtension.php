@@ -4,46 +4,27 @@ declare(strict_types=1);
 
 namespace Depa\SuluBlockLayoutBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Depa\SuluBlockHelperBundle\DependencyInjection\AbstractBlockExtension;
 
-class SuluBlockLayoutExtension extends Extension implements PrependExtensionInterface
+class SuluBlockLayoutExtension extends AbstractBlockExtension
 {
-    use BlockMetadataLoaderTrait;
-
-    public function load(array $configs, ContainerBuilder $container): void
+    protected function getBundleName(): string
     {
-        $metadata = $this->loadMetadataFromXml(__DIR__ . '/../../Resources/config/blocks');
-
-        $container->setParameter('sulu_block_layout.bundle_metadata', [
-            'bundle'   => 'SuluBlockLayoutBundle',
-            'package'  => 'depa-berlin/sulu-block-layout',
-            'blocks'   => $metadata['blocks'],
-            'children' => $metadata['children'],
-        ]);
+        return 'SuluBlockLayoutBundle';
     }
 
-    public function prepend(ContainerBuilder $container): void
+    protected function getPackageName(): string
     {
-        if ($container->hasExtension('twig')) {
-            $container->prependExtensionConfig('twig', [
-                'paths' => [
-                    __DIR__ . '/../../Resources/views' => null,
-                ],
-            ]);
-        }
+        return 'depa-berlin/sulu-block-layout';
+    }
 
-        if ($container->hasExtension('sulu_admin')) {
-            $container->prependExtensionConfig('sulu_admin', [
-                'templates' => [
-                    'block' => [
-                        'directories' => [
-                            'sulu_block_layout' => __DIR__ . '/../../Resources/config/blocks',
-                        ],
-                    ],
-                ],
-            ]);
-        }
+    protected function getMetadataParameterName(): string
+    {
+        return 'sulu_block_layout.bundle_metadata';
+    }
+
+    protected function getSuluAdminTemplateKey(): string
+    {
+        return 'sulu_block_layout';
     }
 }
