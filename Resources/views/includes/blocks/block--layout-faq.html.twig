@@ -1,0 +1,29 @@
+{% set block_id = content._id|default %}
+{% set id = content.attr_id is not empty ? content.attr_id : null %}
+{% set class = content.attr_class is not empty ? content.attr_class : null %}
+{% set col1_class = content.col1_attr_class is not empty ? content.col1_attr_class : 'col-md-5' %}
+{% set col2_class = content.col2_attr_class is not empty ? content.col2_attr_class : 'col-md-7' %}
+
+<div{{ id ? ' id="' ~ id ~ '"' }} class="block--layout-faq{{ class ? ' ' ~ class }}" data-cms-block-id="{{ block_id }}" {{ sulu_block_preview(content) }}>
+    <div class="row">
+        <div class="{{ col1_class }}">
+            {% set block = content.title_block %}
+            {% if block is not empty %}
+                {% include 'includes/blocks/' ~ block.type ~ '.html.twig' with {
+                    content: block,
+                    view: view.title_block,
+                } %}
+            {% endif %}
+        </div>
+
+        <div class="{{ col2_class }}">
+            {% set block = content.faq_block %}
+            {% if block is not empty %}
+                {% include 'includes/blocks/' ~ block.type ~ '.html.twig' with {
+                    content: block,
+                    view: view.faq_block,
+                } %}
+            {% endif %}
+        </div>
+    </div>
+</div>

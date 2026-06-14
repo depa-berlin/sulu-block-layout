@@ -1,0 +1,174 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>block--layout-media-text</key>
+
+    <meta>
+        <title lang="de">Bild + Text | Layout</title>
+        <title lang="en">Media + Text | Layout</title>
+    </meta>
+
+    <tag name="sulu.block_preview" priority="512"/>
+
+    <properties>
+
+        <section name="image_section">
+            <meta>
+                <title lang="de">Bild</title>
+                <title lang="en">Image</title>
+            </meta>
+            <properties>
+
+                <property name="image" type="single_media_selection" mandatory="true">
+                    <meta>
+                        <title lang="de">Bild</title>
+                        <title lang="en">Image</title>
+                    </meta>
+                    <params>
+                        <param name="types" value="image"/>
+                        <param name="min" value="1"/>
+                        <param name="max" value="1"/>
+                    </params>
+                    <tag name="sulu.block_preview" priority="512"/>
+                </property>
+
+            </properties>
+        </section>
+
+        <section name="content_section">
+            <meta>
+                <title lang="de">Inhalt</title>
+                <title lang="en">Content</title>
+            </meta>
+            <properties>
+                <block name="blocks" default-type="block--content-headline" minOccurs="0">
+                    <meta>
+                        <title lang="de">Inhaltsblöcke</title>
+                        <title lang="en">Content blocks</title>
+                    </meta>
+                    <params>
+                        <param name="block_id_generator" value="true"/>
+                    </params>
+                    <types>
+                        <type ref="block--content-headline"/>
+                        <type ref="block--content-title"/>
+                        <type ref="block--content-text"/>
+                        <type ref="block--content-html"/>
+                        <type ref="block--content-lead"/>
+                        <type ref="block--content-lead-html"/>
+                        <type ref="block--content-image"/>
+                        <type ref="block--content-inline-svg"/>
+                        <type ref="block--content-button"/>
+                        <type ref="block--content-button-content"/>
+                        <type ref="block--content-button-grid"/>
+                        <type ref="block--content-list"/>
+                        <type ref="block--feature-icon"/>
+                        <type ref="block--css-grid"/>
+                    </types>
+                </block>
+            </properties>
+        </section>
+
+        <section name="config">
+            <meta>
+                <title lang="de">Einstellungen</title>
+                <title lang="en">Config</title>
+            </meta>
+            <properties>
+
+                <property name="image_position" type="single_select" colspan="4">
+                    <meta>
+                        <title lang="de">Bildposition</title>
+                        <title lang="en">Image position</title>
+                    </meta>
+                    <params>
+                        <param name="default_value" value="auto"/>
+                        <param name="values" type="collection">
+                            <param name="auto">
+                                <meta>
+                                    <title lang="de">Auto (wechselt in Section)</title>
+                                    <title lang="en">Auto (alternates in section)</title>
+                                </meta>
+                            </param>
+                            <param name="left">
+                                <meta>
+                                    <title lang="de">Links</title>
+                                    <title lang="en">Left</title>
+                                </meta>
+                            </param>
+                            <param name="right">
+                                <meta>
+                                    <title lang="de">Rechts</title>
+                                    <title lang="en">Right</title>
+                                </meta>
+                            </param>
+                        </param>
+                    </params>
+                </property>
+
+                <property name="image_width" type="single_select" colspan="4">
+                    <meta>
+                        <title lang="de">Bildbreite</title>
+                        <title lang="en">Image width</title>
+                    </meta>
+                    <params>
+                        <param name="default_value" value="50"/>
+                        <param name="values" type="collection">
+                            <param name="30">
+                                <meta><title lang="en">30 %</title></meta>
+                            </param>
+                            <param name="40">
+                                <meta><title lang="en">40 %</title></meta>
+                            </param>
+                            <param name="50">
+                                <meta><title lang="en">50 %</title></meta>
+                            </param>
+                            <param name="60">
+                                <meta><title lang="en">60 %</title></meta>
+                            </param>
+                            <param name="70">
+                                <meta><title lang="en">70 %</title></meta>
+                            </param>
+                        </param>
+                    </params>
+                </property>
+
+                <property name="loading" type="single_select" colspan="4">
+                    <meta>
+                        <title lang="de">Bild-Ladepriorität</title>
+                        <title lang="en">Image loading</title>
+                    </meta>
+                    <params>
+                        <param name="default_value" value="lazy"/>
+                        <param name="values" type="collection">
+                            <param name="lazy">
+                                <meta><title lang="en">lazy</title></meta>
+                            </param>
+                            <param name="eager">
+                                <meta><title lang="en">eager</title></meta>
+                            </param>
+                        </param>
+                    </params>
+                </property>
+
+                <property name="fetchpriority_high" type="checkbox" colspan="4">
+                    <meta>
+                        <title lang="de">Hohe Fetch-Priorität (LCP-Bild)</title>
+                        <title lang="en">High fetch priority (LCP image)</title>
+                    </meta>
+                </property>
+
+                <xi:include href="../_fragments/attr_class.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+                <xi:include href="../_fragments/attr_id.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+
+            </properties>
+        </section>
+
+    </properties>
+
+</template>

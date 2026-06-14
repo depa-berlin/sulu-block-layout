@@ -1,0 +1,49 @@
+{% block layout_media_text %}
+    {% set block_id = content._id|default %}
+    {% set image = sulu_resolve_media(content.image, app.request.locale) %}
+    {% set position = content.image_position|default('auto') %}
+    {% set image_width = content.image_width|default('50') %}
+    {% set fetchpriority_high = content.fetchpriority_high ?? false %}
+    {% set loading = fetchpriority_high ? 'eager' : content.loading|default('lazy') %}
+
+    {% if image %}
+
+
+        <div
+            class="block--layout-media-text{% if position != 'auto' %} block--layout-media-text--{{ position }}{% endif %} {{ content.attr_class|default }}"
+            style="--layout-media-text-image-width: {{ image_width }}%"
+            {% if content.attr_id|default %}id="{{ content.attr_id }}"{% endif %}
+            data-cms-block-id="{{ block_id }}"
+            {{ sulu_block_preview(content) }}
+        >
+            <div class="block--layout-media-text__content">
+                <div class="block--layout-media-text__text">
+                    {% for block in content.blocks|default([]) %}
+                        {{ include('includes/blocks/' ~ block.type ~ '.html.twig', {
+                            content: block,
+                            view: view.blocks[loop.index0],
+                        }) }}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="block--layout-media-text__image">
+                <picture>
+                    <source media="(min-width: 1200px)" srcset="{{ image.thumbnails['992x'] }}">
+                    <source media="(min-width: 992px)"  srcset="{{ image.thumbnails['767x'] }}">
+                    <source media="(min-width: 768px)"  srcset="{{ image.thumbnails['575x'] }}">
+                    <img
+                        src="{{ image.thumbnails['575x'] }}"
+                        width="{{ image.properties.width }}"
+                        height="{{ image.properties.height }}"
+                        alt="{{ image.title|default('') }}"
+                        {% if image.description %}title="{{ image.description }}"{% endif %}
+                        loading="{{ loading }}"
+                        {% if fetchpriority_high %}fetchpriority="high"{% endif %}
+                        class="block--layout-media-text__img"
+                    >
+                </picture>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+    <key>block--layout-faq</key>
+    <meta>
+        <title lang="de">FAQ | Layout</title>
+        <title lang="en">FAQ |Layout</title>
+    </meta>
+
+    <properties>
+        <property name="description" type="text_line">
+            <meta>
+                <title lang="en">Description</title>
+                <title lang="de">Beschreibung</title>
+            </meta>
+        </property>
+        <section name="content">
+            <meta>
+                <title lang="de">Inhalt</title>
+                <title lang="en">Content</title>
+            </meta>
+            <properties>
+                <block name="title_block" default-type="block--content-title" minOccurs="1" maxOccurs="1">
+                    <meta>
+                        <title lang="en">Title</title>
+                        <title lang="de">Überschrift</title>
+                    </meta>
+                    <params>
+                        <param name="block_id_generator" value="true"/>
+                    </params>
+                    <types>
+                    <type ref="block--content-title"/>
+                </types>
+            </block>
+
+                <block name="faq_block" default-type="block--content-faq" minOccurs="1" maxOccurs="1">
+                    <meta>
+                        <title lang="en">FAQ</title>
+                        <title lang="de">FAQ</title>
+                    </meta>
+                    <params>
+                        <param name="block_id_generator" value="true"/>
+                    </params>
+                    <types>
+                        <type ref="block--content-faq"/>
+                    </types>
+                </block>
+            </properties>
+        </section>
+
+        <!-- Optional: weitere Layout-Einstellungen -->
+        <section name="layout">
+            <meta>
+                <title lang="de">Layout-Einstellungen</title>
+                <title lang="en">Layout Settings</title>
+            </meta>
+            <properties>
+                <xi:include href="../_fragments/attr_id.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+                <xi:include href="../_fragments/attr_class.xml" xpointer="xmlns(sulu=http://schemas.sulu.io/template/template)
+                      xpointer(/sulu:properties/*)"/>
+                <section name="col1">
+                    <meta>
+                        <title lang="de">Linke Spalte</title>
+                        <title lang="en">Col left</title>
+                    </meta>
+                    <properties>
+                        <property name="col1_attr_class" type="text_line" >
+                        <meta>
+                            <title lang="en">CSS classes</title>
+                            <title lang="de">CSS Klassen</title>
+                            <info_text lang="en">The default value is col-md-5 and is overridden by the specified classes.</info_text>
+                            <info_text lang="de">Der Standardwert ist col-md-5 und wird durch die angegebenen Klassen überschrieben.</info_text>
+
+                        </meta>
+                    </property>
+                    </properties>
+                </section>
+
+                <section name="col2">
+                    <meta>
+                        <title lang="de">Rechte Spalte</title>
+                        <title lang="en">Col right</title>
+                    </meta>
+                    <properties>
+                        <property name="col2_attr_class" type="text_line" >
+                            <meta>
+                                <title lang="en">CSS classes</title>
+                                <title lang="de">CSS Klassen</title>
+                                <info_text lang="en">The default value is col-md-7 and is overridden by the specified classes.</info_text>
+                                <info_text lang="de">Der Standardwert ist col-md-7 und wird durch die angegebenen Klassen überschrieben.</info_text>
+
+                            </meta>
+                        </property>
+                    </properties>
+                </section>
+
+
+            </properties>
+        </section>
+    </properties>
+</template>
