@@ -1,12 +1,12 @@
 {
-    "name": "depa-berlin/sulu-block-layout",
+    "name": "depa/sulu-block-layout",
     "description": "Layout block collection for Sulu CMS (faq, hero, media-text)",
     "type": "symfony-bundle",
     "license": "proprietary",
     "require": {
         "php": "^8.2",
         "symfony/framework-bundle": "^7.0",
-        "depa-berlin/sulu-block-helper": "@dev"
+        "depa/sulu-block-helper": "@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^11.0",
