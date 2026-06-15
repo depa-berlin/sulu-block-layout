@@ -1,0 +1,6 @@
+section:
+    - block--layout-faq
+    - block--layout-hero
+    - block--layout-media-text
+
+container: []
