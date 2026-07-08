@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Depa\SuluBlockLayoutBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Depa\SuluBlockHelperBundle\AbstractBlockBundle;
 
-class SuluBlockLayoutBundle extends Bundle
+class SuluBlockLayoutBundle extends AbstractBlockBundle
 {
 }
